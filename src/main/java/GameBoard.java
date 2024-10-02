@@ -8,6 +8,10 @@ public class GameBoard {
     fillGameBoard();
   }
 
+  public void placeSymbol(char symbol, int row, int column) {
+    gameBoard[row][column] = symbol;
+  }
+
   private void fillGameBoard() {
     for(int row = 0; row < gameBoard.length; row++){
       Arrays.fill(gameBoard[row], ' ');

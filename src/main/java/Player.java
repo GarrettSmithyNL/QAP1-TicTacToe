@@ -1,18 +1,25 @@
 public class Player {
-  private int playerNum;
-  public char gameSymbol;
+  private String name;
+  private char symbol;
 
-  public Player(int playerNum, char gameSymbol) {
-    this.playerNum = playerNum;
-    this.gameSymbol = gameSymbol;
+  public Player(String name, char symbol) {
+    this.name = name;
+    this.symbol = symbol;
   }
 
-  public int getPlayerNum() {
-    return playerNum;
+  public String getName() {
+    return name;
   }
 
-  public void setPlayerNum(int playerNum) {
-    this.playerNum = playerNum;
+  public void setName(String name) {
+    this.name = name;
   }
 
+  public char getSymbol() {
+    return symbol;
+  }
+
+  public void setSymbol(char symbol) {
+    this.symbol = symbol;
+  }
 }
