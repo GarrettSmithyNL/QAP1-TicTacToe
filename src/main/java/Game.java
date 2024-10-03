@@ -15,18 +15,11 @@ public class Game {
     return gameBoard.toString();
   }
 
-  private boolean isThereAWinner(Player player) {
+  public boolean isThereAWinner(Player player) {
     return gameBoard.checkForWinner(player);
   }
 
-  public static void main(String[] args) {
-    Player player1 = new Player("John", 'X');
-    Player player2 = new Player("Jane", 'O');
-    Game game = new Game();
-    System.out.println(game.getGameBoard());
-    game.makeAPlay(player1, 1, 1);
-    System.out.println(game.getGameBoard());
-
+  public void clearGameBoard() {
+    gameBoard.clearBoard();
   }
-
 }

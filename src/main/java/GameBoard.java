@@ -5,7 +5,7 @@ public class GameBoard {
 
   public GameBoard() {
     gameBoard = new char[3][3];
-    fillGameBoard();
+    clearBoard();
   }
 
   public boolean placeSymbol(char symbol, int row, int column) {
@@ -21,9 +21,9 @@ public class GameBoard {
     }
   }
 
-  private void fillGameBoard() {
-    for(int row = 0; row < gameBoard.length; row++){
-      Arrays.fill(gameBoard[row], ' ');
+  public void clearBoard() {
+    for (char[] rows : gameBoard) {
+      Arrays.fill(rows, ' ');
     }
   }
 
