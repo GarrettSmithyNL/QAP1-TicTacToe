@@ -5,14 +5,18 @@ public class Game {
     gameBoard = new GameBoard();
   }
 
-  public void makeAPlay(Player player, int row, int column) {
+  public boolean makeAPlay(Player player, int row, int column) {
     int boardRow = row - 1;
     int boardColumn = column - 1;
-    gameBoard.placeSymbol(player.getSymbol(), boardRow, boardColumn);
+    return gameBoard.placeSymbol(player.getSymbol(), boardRow, boardColumn);
   }
 
   public String getGameBoard() {
     return gameBoard.toString();
+  }
+
+  private boolean isThereAWinner(Player player) {
+    return gameBoard.checkForWinner(player);
   }
 
   public static void main(String[] args) {

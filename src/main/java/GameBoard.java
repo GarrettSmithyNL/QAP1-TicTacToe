@@ -8,14 +8,54 @@ public class GameBoard {
     fillGameBoard();
   }
 
-  public void placeSymbol(char symbol, int row, int column) {
-    gameBoard[row][column] = symbol;
+  public boolean placeSymbol(char symbol, int row, int column) {
+    try {
+      if (gameBoard[row][column] == ' ') {
+        gameBoard[row][column] = symbol;
+        return true;
+      } else {
+        return false;
+      }
+    } catch (ArrayIndexOutOfBoundsException e) {
+      return false;
+    }
   }
 
   private void fillGameBoard() {
     for(int row = 0; row < gameBoard.length; row++){
       Arrays.fill(gameBoard[row], ' ');
     }
+  }
+
+  public boolean checkForWinner(Player player) {
+    // Rows
+    for (int i = 0; i < 3; i++) {
+      if(gameBoard[i][0]== player.getSymbol()
+              && gameBoard[i][1]== player.getSymbol()
+              && gameBoard[i][2] == player.getSymbol()) {
+        return true;
+      }
+    }
+    // Columns
+    for (int i = 0; i < 3; i++) {
+      if (gameBoard[0][i]== player.getSymbol()
+              && gameBoard[1][i]== player.getSymbol()
+              && gameBoard[2][i] == player.getSymbol()) {
+        return true;
+      }
+    }
+    // Diagonals
+    if (gameBoard[0][0]== player.getSymbol()
+            && gameBoard[1][1]== player.getSymbol()
+            && gameBoard[2][2] == player.getSymbol()) {
+      return true;
+    }
+    if (gameBoard[0][2]== player.getSymbol()
+            && gameBoard[1][1]== player.getSymbol()
+            && gameBoard[2][0] == player.getSymbol()) {
+      return true;
+    }
+    return false;
   }
 
   @Override
