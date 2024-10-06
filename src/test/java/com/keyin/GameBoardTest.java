@@ -1,3 +1,6 @@
+package com.keyin;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,11 +31,11 @@ public class GameBoardTest {
   void testGameBoardConstructor() {
     int requiredGameBoardSize = 3;
     char requiredInitChar = ' ';
-    assertEquals(testBoard.getGameBoard().length, requiredGameBoardSize);
+    Assertions.assertEquals(testBoard.getGameBoard().length, requiredGameBoardSize);
     for(int row = 0; row < testBoard.getGameBoard().length; row++) {
-      assertEquals(testBoard.getGameBoard()[row].length, requiredGameBoardSize);
+      Assertions.assertEquals(testBoard.getGameBoard()[row].length, requiredGameBoardSize);
       for(int column = 0; column < testBoard.getGameBoard()[row].length; column++) {
-        assertEquals(testBoard.getGameBoard()[row][column], requiredInitChar);
+        Assertions.assertEquals(testBoard.getGameBoard()[row][column], requiredInitChar);
       }
     }
   }
@@ -41,8 +44,8 @@ public class GameBoardTest {
   void testPlacingValidSymbols() {
     int testPlacementRow = 2;
     int testPlacementColumn = 1;
-    assertTrue(testBoard.placeSymbol(player1.getSymbol(), testPlacementRow, testPlacementColumn));
-    assertEquals(testBoard.getGameBoard()[testPlacementRow][testPlacementColumn], player1.getSymbol());
+    Assertions.assertTrue(testBoard.placeSymbol(player1.getSymbol(), testPlacementRow, testPlacementColumn));
+    Assertions.assertEquals(testBoard.getGameBoard()[testPlacementRow][testPlacementColumn], player1.getSymbol());
   }
 
   @Test
@@ -51,8 +54,8 @@ public class GameBoardTest {
     int testPlacementColumn = 1;
     int testFailPlacementRow = 5;
     testBoard.placeSymbol(player1.getSymbol(), testPlacementRow, testPlacementColumn);
-    assertFalse(testBoard.placeSymbol(player2.getSymbol(), testPlacementRow, testPlacementColumn));
-    assertFalse(testBoard.placeSymbol(player1.getSymbol(), testFailPlacementRow, testPlacementColumn));
+    Assertions.assertFalse(testBoard.placeSymbol(player2.getSymbol(), testPlacementRow, testPlacementColumn));
+    Assertions.assertFalse(testBoard.placeSymbol(player1.getSymbol(), testFailPlacementRow, testPlacementColumn));
   }
 
   @Test
@@ -63,13 +66,13 @@ public class GameBoardTest {
     }
     for(int row = 0; row < testBoard.getGameBoard().length; row++) {
       for(int column = 0; column < testBoard.getGameBoard()[row].length; column++) {
-        assertEquals(testBoard.getGameBoard()[row][column], player1.getSymbol());
+        Assertions.assertEquals(testBoard.getGameBoard()[row][column], player1.getSymbol());
       }
     }
     testBoard.clearBoard();
     for(int row = 0; row < testBoard.getGameBoard().length; row++) {
       for(int column = 0; column < testBoard.getGameBoard()[row].length; column++) {
-        assertEquals(testBoard.getGameBoard()[row][column], requiredClearedSymbol);
+        Assertions.assertEquals(testBoard.getGameBoard()[row][column], requiredClearedSymbol);
       }
     }
   }
@@ -81,7 +84,7 @@ public class GameBoardTest {
     for (int row = 0; row < testBoard.getGameBoard().length; row++) {
       testBoard.placeSymbol(player1.getSymbol(), row, testWinningColumn);
     }
-    assertTrue(testBoard.checkForWinner(player1));
+    Assertions.assertTrue(testBoard.checkForWinner(player1));
 
     testBoard.clearBoard();
 
@@ -90,7 +93,7 @@ public class GameBoardTest {
     for (int column = 0; column < testBoard.getGameBoard()[testWinningRow].length; column++) {
       testBoard.placeSymbol(player1.getSymbol(), testWinningRow, column);
     }
-    assertTrue(testBoard.checkForWinner(player1));
+    Assertions.assertTrue(testBoard.checkForWinner(player1));
 
     testBoard.clearBoard();
 
@@ -99,14 +102,14 @@ public class GameBoardTest {
     testBoard.placeSymbol(player1.getSymbol(), 1, 1);
     testBoard.placeSymbol(player1.getSymbol(), 2, 2);
 
-    assertTrue(testBoard.checkForWinner(player1));
+    Assertions.assertTrue(testBoard.checkForWinner(player1));
     testBoard.clearBoard();
 
     testBoard.placeSymbol(player1.getSymbol(), 0, 2);
     testBoard.placeSymbol(player1.getSymbol(), 1, 1);
     testBoard.placeSymbol(player1.getSymbol(), 2, 0);
 
-    assertTrue(testBoard.checkForWinner(player1));
+    Assertions.assertTrue(testBoard.checkForWinner(player1));
   }
 
 

@@ -1,3 +1,5 @@
+package com.keyin;
+
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -13,7 +15,7 @@ public class Menu {
     System.out.println("You know how to play!");
     while (running) {
       System.out.println("Select from the menu: ");
-      System.out.println("1.) Add a Player");
+      System.out.println("1.) Add a com.keyin.Player");
       System.out.println("2.) Reset Players");
       System.out.println("3.) Play Game");
       System.out.println("4.) Exit Game");

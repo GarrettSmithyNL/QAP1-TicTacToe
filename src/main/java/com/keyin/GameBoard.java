@@ -1,3 +1,5 @@
+package com.keyin;
+
 import java.util.Arrays;
 
 public class GameBoard {

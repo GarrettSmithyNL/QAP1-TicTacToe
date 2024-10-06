@@ -1,4 +1,6 @@
+package com.keyin;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,11 +24,11 @@ public class MenuTest {
     Menu testMenu = new Menu();
     testMenu.main(new ByteArrayInputStream(inputString.getBytes()));
 
-    assertEquals(testMenu.getPlayer1().getName(), testPlayer1Name);
-    assertEquals(testMenu.getPlayer1().getSymbol(), testPlayer1Symbol);
+    Assertions.assertEquals(testMenu.getPlayer1().getName(), testPlayer1Name);
+    Assertions.assertEquals(testMenu.getPlayer1().getSymbol(), testPlayer1Symbol);
 
-    assertEquals(testMenu.getPlayer2().getName(), testPlayer2Name);
-    assertEquals(testMenu.getPlayer2().getSymbol(), testPlayer2Symbol);
+    Assertions.assertEquals(testMenu.getPlayer2().getName(), testPlayer2Name);
+    Assertions.assertEquals(testMenu.getPlayer2().getSymbol(), testPlayer2Symbol);
   }
 
   @Test
@@ -45,8 +47,8 @@ public class MenuTest {
     Menu testMenu = new Menu();
     testMenu.main(new ByteArrayInputStream(inputString.getBytes()));
 
-    assertEquals(testMenu.getPlayer1(), null);
-    assertEquals(testMenu.getPlayer2(), null);
+    Assertions.assertEquals(testMenu.getPlayer1(), null);
+    Assertions.assertEquals(testMenu.getPlayer2(), null);
   }
 
   @Test
@@ -66,10 +68,10 @@ public class MenuTest {
     Menu testMenu = new Menu();
     testMenu.main(new ByteArrayInputStream(inputString.getBytes()));
 
-    assertEquals(testMenu.getGameBoard().getGameBoard()[0][0], testPlayer1Symbol);
-    assertEquals(testMenu.getGameBoard().getGameBoard()[0][1], testPlayer1Symbol);
-    assertEquals(testMenu.getGameBoard().getGameBoard()[0][2], testPlayer1Symbol);
-    assertEquals(testMenu.getGameBoard().getGameBoard()[1][0], testPlayer2Symbol);
-    assertEquals(testMenu.getGameBoard().getGameBoard()[1][1], testPlayer2Symbol);
+    Assertions.assertEquals(testMenu.getGameBoard().getGameBoard()[0][0], testPlayer1Symbol);
+    Assertions.assertEquals(testMenu.getGameBoard().getGameBoard()[0][1], testPlayer1Symbol);
+    Assertions.assertEquals(testMenu.getGameBoard().getGameBoard()[0][2], testPlayer1Symbol);
+    Assertions.assertEquals(testMenu.getGameBoard().getGameBoard()[1][0], testPlayer2Symbol);
+    Assertions.assertEquals(testMenu.getGameBoard().getGameBoard()[1][1], testPlayer2Symbol);
   }
 }

@@ -1,3 +1,5 @@
+package com.keyin;
+
 public class Player {
   private String name;
   private char symbol;
