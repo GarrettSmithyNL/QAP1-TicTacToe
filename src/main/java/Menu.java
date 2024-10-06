@@ -1,11 +1,13 @@
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class Menu {
-  private  final Game game = new Game();
+  private final GameBoard game = new GameBoard();
   private Player player1 = null;
   private Player player2 = null;
-  private final Scanner input = new Scanner(System.in);
-  public void main() {
+  private Scanner input;
+  public void main(InputStream inputStream) {
+    input = new Scanner(inputStream);
     boolean running = true;
     System.out.println("Welcome to Tic Tac Toe!");
     System.out.println("You know how to play!");
@@ -22,6 +24,10 @@ public class Menu {
             player1 = addPlayer();
           } else if (player2 == null) {
             player2 = addPlayer();
+            while (player1.getSymbol() == player2.getSymbol()){
+              System.out.println("Cant have the same symbol as player1");
+              player2 = addPlayer();
+            }
           } else {
             System.out.println("All players already assigned");
           }
@@ -55,11 +61,11 @@ public class Menu {
   }
 
   private void playGame() {
+    game.clearBoard();
     System.out.println(player1.getName() + " goes first");
     boolean playingGame = true;
     while (playingGame) {
       if (takeTurn(player1) || takeTurn(player2)) {
-        game.clearGameBoard();
         playingGame = false;
       }
     }
@@ -67,7 +73,7 @@ public class Menu {
 
   private boolean takeTurn(Player player) {
     playersTurn(player);
-    if (game.isThereAWinner(player)) {
+    if (game.checkForWinner(player)) {
       System.out.println("Congratulations! " + player.getName() + " You Win!");
       return true;
     }
@@ -75,14 +81,14 @@ public class Menu {
   }
 
   private void playersTurn(Player player) {
-    System.out.println(game.getGameBoard());
+    System.out.println(game);
     int row, column;
     do {
       System.out.println("Select a Row from 1 - 3: ");
       row = input.nextInt();
       System.out.println("Select a Column from 1 - 3: ");
       column = input.nextInt();
-    } while (!game.makeAPlay(player, row, column) && invalidPlacementMessage());
+    } while (!game.placeSymbol(player.getSymbol(), row - 1, column - 1) && invalidPlacementMessage());
   }
 
   private boolean invalidPlacementMessage() {
@@ -90,7 +96,19 @@ public class Menu {
     return true;
   }
 
+  public Player getPlayer1() {
+    return player1;
+  }
+
+  public Player getPlayer2() {
+    return player2;
+  }
+
+  public GameBoard getGameBoard() {
+    return game;
+  }
+
   public static void main(String[] args) {
-    new Menu().main();
+    new Menu().main(System.in);
   }
 }

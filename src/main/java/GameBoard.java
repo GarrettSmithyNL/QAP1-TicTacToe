@@ -58,6 +58,10 @@ public class GameBoard {
     return false;
   }
 
+  public char[][] getGameBoard() {
+    return gameBoard;
+  }
+
   @Override
   public String toString() {
     String printedGameBoard = "";
