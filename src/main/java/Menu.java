@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Menu {
-  private  final Game game = new Game();
+  private  final GameBoard game = new GameBoard();
   private Player player1 = null;
   private Player player2 = null;
   private final Scanner input = new Scanner(System.in);
@@ -59,7 +59,7 @@ public class Menu {
     boolean playingGame = true;
     while (playingGame) {
       if (takeTurn(player1) || takeTurn(player2)) {
-        game.clearGameBoard();
+        game.clearBoard();
         playingGame = false;
       }
     }
@@ -67,7 +67,7 @@ public class Menu {
 
   private boolean takeTurn(Player player) {
     playersTurn(player);
-    if (game.isThereAWinner(player)) {
+    if (game.checkForWinner(player)) {
       System.out.println("Congratulations! " + player.getName() + " You Win!");
       return true;
     }
@@ -75,14 +75,14 @@ public class Menu {
   }
 
   private void playersTurn(Player player) {
-    System.out.println(game.getGameBoard());
+    System.out.println(game);
     int row, column;
     do {
       System.out.println("Select a Row from 1 - 3: ");
       row = input.nextInt();
       System.out.println("Select a Column from 1 - 3: ");
       column = input.nextInt();
-    } while (!game.makeAPlay(player, row, column) && invalidPlacementMessage());
+    } while (!game.placeSymbol(player.getSymbol(), row - 1, column - 1) && invalidPlacementMessage());
   }
 
   private boolean invalidPlacementMessage() {
